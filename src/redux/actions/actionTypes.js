@@ -1,0 +1,9 @@
+export const ADD_TRANS = "ADD_TRANSACTION";
+export const DELETE_TRANS = "DELETE_TRANSACTION";
+export const EDIT_TRANS = "EDIT_TRANSACTION";
+export const ADD_PLAN = "ADD_PLAN";
+export const DELETE_PLAN = "DELETE_PLAN";
+export const EDIT_PLAN = "EDIT_PLAN";
+export const SET_ID = "SET_ID";
+export const SET_TRANS = "SET_TRANSACTIONS";
+export const SET_PLANS = "SET_PLANS";

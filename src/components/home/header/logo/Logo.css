@@ -1,0 +1,11 @@
+.app-logo {
+  display: flex;
+  font-size: medium;
+  flex: 0.3;
+  justify-content: center;
+  align-items: center;
+}
+
+p {
+  font-size: 24px;
+}

@@ -1,0 +1,17 @@
+.navbar-element {
+  display: flex;
+  font-size: 20px;
+  padding: 12px;
+  margin: 2px 2px;
+}
+
+.navbar-element:hover {
+  cursor: pointer;
+}
+
+.navbar {
+  display: flex;
+  justify-content: flex-end;
+  flex: 0.7;
+  align-items: center;
+}
