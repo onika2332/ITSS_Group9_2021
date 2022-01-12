@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router';
 import { deleteTransaction, editTransaction } from '../../../redux/actions/actions';
 import { options } from '../activity/add/AddForm';
+import './EditItem.css'
 function EditItem() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -21,6 +22,9 @@ function EditItem() {
     }
     return (
         <div className='edit-container'>
+            <div className='back-container'>
+                <button onClick={() => navigate(`/home`)}>{`< Back`}</button>
+            </div>
             <p>Edit Transactions</p>
             <input
                 type='text'
@@ -36,7 +40,7 @@ function EditItem() {
                     }
                 </select>
             </div>
-            <button className="type-btn"
+            <button
                 className={t}
                 onClick={changeType}
             >
@@ -49,7 +53,17 @@ function EditItem() {
                     navigate('/home');
                 }}>Delete</button>
                 <button id="update-btn" onClick={() =>
-                    dispatch(editTransaction(id, { type: t, description: desc, amount: am }))
+                    dispatch(
+                        editTransaction(
+                            id,
+                            {
+                                type: t,
+                                description: desc,
+                                amount: am,
+                                updatedAt: new Date()
+                            }
+                        )
+                    )
                 }>Update</button>
             </div>
         </div>

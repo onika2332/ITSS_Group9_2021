@@ -33,7 +33,7 @@ export const SignupForm = () => {
                 });
                 setText("Create successfully");
                 setTimeout(() => { }, 1000);
-                navigate('/login');
+                navigate('/');
             }
         }
     }
@@ -54,7 +54,7 @@ export const SignupForm = () => {
             </div>
             <div className="form-group">
                 <label htmlFor="password">Password</label>
-                <input type="text" name="password" placeholder="password"
+                <input type="password" name="password" placeholder="password"
                     value={password} onChange={(e) => setPassword(e.target.value)}
                 />
             </div>
@@ -63,7 +63,7 @@ export const SignupForm = () => {
                     Register
                 </button>
                 <div className='login-path'>
-                    Have an account? <Link to="/login">Login</Link>
+                    Have an account? <Link to="/">Login</Link>
                 </div>
             </div>
         </div>

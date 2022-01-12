@@ -107,3 +107,19 @@ input:hover {
   border: 1px solid black;
   margin-top: 50px;
 }
+
+.back-container {
+  width: 100%;
+  height: 30px;
+  margin-bottom: 2px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.back-container button {
+  left: 5px;
+  cursor: pointer;
+  height: 30px;
+  font-size: 12px;
+  width: 60px;
+}

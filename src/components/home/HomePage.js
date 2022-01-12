@@ -3,15 +3,13 @@ import AddTransaction from './activity/AddTransaction'
 import ChartContainer from './chart/transaction/ChartContainer'
 import DisplayList from './DisplayList'
 import Header from './header/Header'
-
+import './homepage.css'
 
 function HomePage() {
     return (
         <div className='home-container'>
             <Header />
-            {/* <ChartContainer />
-                <DisplayList data={list} />
-                <AddTransaction /> */}
+            <ChartContainer />
             <DisplayList />
             <AddTransaction />
         </div>
