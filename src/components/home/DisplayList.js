@@ -1,18 +1,22 @@
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { connect } from 'react-redux'
 import TransactionList from './transaction/TransactionList'
-function DisplayList() {
-    const transactionList = useSelector(state => state.transactions);
-    const [list, setList] = useState(transactionList);
+import Search from './activity/Search';
+function DisplayList(props) {
+    //const transactionList = useSelector(state => state.transactions);
+    const [list, setList] = useState(props.transactions);
     const [text, setText] = useState("");
 
     const handleSearch = (str) => {
         // search description or what???
         setText(str);
         if (str === "") {
-            setList(transactionList);
+            setList(props.transactions);
         } else {
-            const successList = list?.filter(item => item.description.include(str));
+            if (list.length === 0) {
+                return;
+            }
+            const successList = props.transactions.filter(item => item.description.toLowerCase().includes(str.toLowerCase()));
             setList(successList);
         }
     }
@@ -24,12 +28,18 @@ function DisplayList() {
     return (
         <div className='display-container'>
             <div className='action-container'>
-                {/* <Search text={text} handle={handleSearch} />
-                <Filter /> */}
+                <Search text={text} handleSearch={handleSearch} />
+                {/* <Filter /> */}
             </div>
-            {list ? <TransactionList list={list} /> : <p>You haven't any transactions yet</p>}
+            {list.length > 0 ? <TransactionList list={list} /> : <p>You haven't any transactions yet</p>}
         </div>
     )
 }
 
-export default DisplayList
+const mapStateToProps = (state) => {
+    return {
+        transactions: state.transactions
+    }
+}
+
+export default connect(mapStateToProps, null)(DisplayList)

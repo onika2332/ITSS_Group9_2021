@@ -5,9 +5,10 @@ import { Link } from 'react-router-dom';
 import { db } from '../../firestore';
 import { doc, getDoc } from 'firebase/firestore/lite';
 import md5 from 'md5';
+import { setID, setPlans, setTransactions } from '../../redux/actions/actions';
+import { connect } from 'react-redux';
 
-
-export const LoginForm = () => {
+export const LoginForm = ({ fn }) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [text, setText] = useState("Login to get started");
@@ -22,9 +23,11 @@ export const LoginForm = () => {
             const docSnap = await getDoc(docRef);
             if (docSnap.exists()) {
                 // redirect to Home + setup id, transactions, plans for redux store
+                fn.d_setID(docSnap.data().id);
+                fn.d_setTransactions(docSnap.data().transactions);
+                fn.d_setPlans(docSnap.data().plans);
                 console.log("Login successfully");
-                console.log("Document data:", docSnap.data());
-                navigate(`/user/${id}`);
+                navigate(`/home`);
             } else {
                 setText("User is already available.Please enter another username!!");
                 return;
@@ -34,7 +37,7 @@ export const LoginForm = () => {
 
     return (
         <div className="form">
-            <div className='text-note'>{text}</div>
+            <div className='text-note' >{text}</div>
             <div className="form-group">
                 <label htmlFor="username">Username</label>
                 <input type="text" name="username" placeholder="username"
@@ -59,15 +62,24 @@ export const LoginForm = () => {
     )
 }
 
-function Login() {
+function Login(props) {
     return (
         <div className="base-container">
             <div className="header">Login</div>
             <div className="content">
-                <LoginForm />
+                <LoginForm fn={props} />
             </div>
         </div>
     )
 }
 
-export default Login
+const mapDispatchToProps = (dispatch) => {
+    return ({
+        d_setID: id => dispatch(setID(id)),
+        d_setTransactions: data => dispatch(setTransactions(data)),
+        d_setPlans: data => dispatch(setPlans(data))
+    })
+}
+
+export default connect(null, mapDispatchToProps)(Login)
+//export default Login

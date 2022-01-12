@@ -38,6 +38,7 @@ export const deleteTransaction = (id) => {
     }
 }
 
+
 export const editTransaction = (id, data) => {
     return {
         type: EDIT_TRANS,

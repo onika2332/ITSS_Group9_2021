@@ -9,7 +9,7 @@ function AddPage() {
         <>
             <div className='main-page'>
                 <div className='back-container'>
-                    <button onClick={() => navigate(`/user/${id}`)}>{`< Back`}</button>
+                    <button onClick={() => navigate(`/home`)}>{`< Back`}</button>
                 </div>
                 <AddForm />
             </div>

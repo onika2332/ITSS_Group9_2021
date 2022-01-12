@@ -12,7 +12,7 @@ const TransactionList = ({ list }) => {
                         id={item.id}
                         description={item.description}
                         amount={item.amount}
-                        color={item.type === "Income" ? "Green" : "Red"}
+                        color={item.type === "income" ? "green" : "red"}
                     />
                 )
             }

@@ -7,6 +7,21 @@ import { db } from '../../../../firestore';
 import { addTransaction } from '../../../../redux/actions/actions';
 import "./AddForm.css"
 
+export const options = [
+    {
+        value: "Food",
+        label: "Food"
+    },
+    {
+        value: "Medical",
+        label: "Medical"
+    },
+    {
+        value: "Transport",
+        label: "Transport"
+    }
+];
+
 const AddForm = () => {
     const { id } = useParams();
     const [type, setType] = useState('income');
@@ -24,10 +39,6 @@ const AddForm = () => {
 
     const handleAmount = (e) => {
         setAmount(e.target.value);
-    }
-
-    const handleDesc = (e) => {
-        setDesc(e.target.value);
     }
 
     const handleClick = async () => {
@@ -63,12 +74,14 @@ const AddForm = () => {
                 value={amount}
                 onChange={(e) => handleAmount(e)}
             />
-            <input
-                type='text'
-                placeholder='Description...'
-                value={desc}
-                onChange={(e) => handleDesc(e)}
-            />
+            <div className='desc-container'>
+                <p>Choose description</p>
+                <select value={desc} onChange={(e) => setDesc(e.target.value)}>
+                    {
+                        options.map(option => (<option key={option.value} value={option.value}>{option.label}</option>))
+                    }
+                </select>
+            </div>
             <button
                 className={type}
                 onClick={changeType}

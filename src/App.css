@@ -1,10 +1,9 @@
 .app-container {
   background-color: white;
-  width: 60%;
-  height: 100%;
+  width: 70%;
+  height: 600px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
 }
 

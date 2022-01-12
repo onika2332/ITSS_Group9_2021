@@ -6,7 +6,7 @@ const AddTransaction = () => {
     const navigate = useNavigate();
     return (
         <>
-            <button className='add-button' onClick={() => navigate(`/user/${id}/add`)}>
+            <button className='add-button' onClick={() => navigate(`/transaction/add`)}>
                 +
             </button>
         </>

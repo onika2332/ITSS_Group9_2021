@@ -1,17 +1,13 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './Search.css'
 
-const Search = () => {
-    const [pattern, setPattern] = useState("");
-    const handleSearch = (e) => {
-        setPattern(e.target.value);
-    }
+const Search = ({ text, handleSearch }) => {
     return (
         <div className='search-container'>
             <input
                 type='text'
-                value={pattern}
-                onChange={(e) => handleSearch(e)}
+                value={text}
+                onChange={(e) => handleSearch(e.target.value)}
             />
         </div>
     )

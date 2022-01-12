@@ -3,8 +3,10 @@ import './navbar.css';
 import ListIcon from '@material-ui/icons/List';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import FeedbackIcon from '@material-ui/icons/Feedback';
+import { useNavigate } from 'react-router';
 
 const NavBar = () => {
+    const navigate = useNavigate();
     return (
         <div className='navbar'>
             <div className='navbar-element'>
@@ -15,7 +17,7 @@ const NavBar = () => {
                 FEEDBACK
                 <FeedbackIcon fontSize='large' color='primary' />
             </div>
-            <div className='navbar-element'>
+            <div className='navbar-element' onClick={navigate('/account')}>
                 ACCOUNT
                 <AccountCircleIcon fontSize='large' color='primary' />
             </div>

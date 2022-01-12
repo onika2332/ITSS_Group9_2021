@@ -2,6 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from 'firebase/firestore/lite';
 
+// Đây là config của 1 DB giả lập, khi thực hiện trên project thực chỉ cần thay dổi config.
 const firebaseConfig = {
     apiKey: "AIzaSyDM10Y50sP40C-5G6mDtJSyVQ0FmCiiHi0",
     authDomain: "test-firestore-api-dc56b.firebaseapp.com",

@@ -15,7 +15,7 @@ const transactionReducer = (state = [], action) => {
         case ADD_TRANS:
             return [
                 ...state,
-                { ...action.payload, id: 1 + state.length }
+                { ...action.payload }
             ];
         case DELETE_TRANS:
             return [
