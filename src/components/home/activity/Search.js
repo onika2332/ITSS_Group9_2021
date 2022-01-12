@@ -5,6 +5,7 @@ const Search = ({ text, handleSearch }) => {
     return (
         <div className='search-container'>
             <input
+                id="search-input"
                 type='text'
                 value={text}
                 onChange={(e) => handleSearch(e.target.value)}

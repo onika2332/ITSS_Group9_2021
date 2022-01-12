@@ -6,9 +6,11 @@ import { db } from '../../firestore';
 import { doc, getDoc } from 'firebase/firestore/lite';
 import md5 from 'md5';
 import { setID, setPlans, setTransactions } from '../../redux/actions/actions';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
-export const LoginForm = ({ fn }) => {
+
+export const LoginForm = () => {
+    const dispatch = useDispatch();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [text, setText] = useState("Login to get started");
@@ -23,10 +25,9 @@ export const LoginForm = ({ fn }) => {
             const docSnap = await getDoc(docRef);
             if (docSnap.exists()) {
                 // redirect to Home + setup id, transactions, plans for redux store
-                console.log(docSnap.data());
-                fn.d_setID(id);
-                fn.d_setTransactions(docSnap.data().transactions);
-                fn.d_setPlans(docSnap.data().plans);
+                dispatch(setID(id));
+                dispatch(setTransactions(docSnap.data().transactions));
+                dispatch(setPlans(docSnap.data().plans));
                 console.log("Login successfully");
                 navigate(`/home`);
             } else {
@@ -63,24 +64,17 @@ export const LoginForm = ({ fn }) => {
     )
 }
 
-function Login(props) {
+function Login() {
     return (
         <div className="base-container">
             <div className="header">Login</div>
             <div className="content">
-                <LoginForm fn={props} />
+                <LoginForm />
             </div>
         </div>
     )
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return ({
-        d_setID: id => dispatch(setID(id)),
-        d_setTransactions: data => dispatch(setTransactions(data)),
-        d_setPlans: data => dispatch(setPlans(data))
-    })
-}
 
-export default connect(null, mapDispatchToProps)(Login)
+export default Login
 //export default Login

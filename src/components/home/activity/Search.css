@@ -4,15 +4,16 @@
   height: 40px;
   width: 50%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
 }
 .search-container input {
   position: relative;
   top: 2px;
   border: none;
-  width: 80%;
+  width: 75%;
   background-color: #d9d9d9;
   height: 80%;
+  margin-left: 3px;
 }
 
 input:focus {

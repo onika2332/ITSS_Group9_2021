@@ -1,7 +1,7 @@
 import { arrayUnion, doc, updateDoc } from 'firebase/firestore/lite';
 import md5 from 'md5';
 import React, { useState } from 'react'
-import { connect, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { db } from '../../../../firestore';
 import { addTransaction } from '../../../../redux/actions/actions';
 import "./AddForm.css"
@@ -21,11 +21,12 @@ export const options = [
     }
 ];
 
-const AddForm = (props) => {
+const AddForm = () => {
     const [type, setType] = useState('income');
     const [amount, setAmount] = useState(0);
     const [desc, setDesc] = useState("Others...");
     const dispatch = useDispatch();
+    const { id } = useSelector(state => state.id);
     const [text, setText] = useState("Add your transaction here");
     const changeType = () => {
         if (type === 'income') {
@@ -53,8 +54,7 @@ const AddForm = (props) => {
                 type: type,
                 updatedAt: new Date()
             }));
-            const docRef = doc(db, "money_db", `${props.id}`);
-            console.log(props.id);
+            const docRef = doc(db, "money_db", `${id}`);
             await updateDoc(docRef, {
                 transactions: arrayUnion({
                     id: md5(amount.toString() + desc),
@@ -105,9 +105,4 @@ const AddForm = (props) => {
     )
 }
 
-const mapStateToProps = (state) => {
-    return {
-        id: state.id
-    }
-}
-export default connect(mapStateToProps, null)(AddForm)
+export default AddForm

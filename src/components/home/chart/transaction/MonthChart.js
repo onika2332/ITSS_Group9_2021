@@ -1,19 +1,27 @@
-import React, { useMemo, useState, useEffect } from 'react'
+import React, { useMemo } from 'react'
 import { Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-function MonthChart({ list }) {
-    const [details, setDetails] = useState({ income: 0, expense: 0 })
+const initData = () => {
+    return { income: 0, expense: 0 }
+}
 
-    useEffect(() => {
-        let income = 0, expense = 0;
-        list.map(item =>
-            item.type === "income" ? income += parseInt(item.amount) : expense += parseInt(item.amount)
+function MonthChart({ list }) {
+
+    const details = useMemo(() => {
+        let data = initData();
+        let date = new Date();
+        let thisMonthList = list.filter(item => {
+            let itemMonth = new Date(item.updatedAt);
+            return itemMonth.getMonth() === date.getMonth()
+        });
+        thisMonthList.map(item =>
+            item.type === "income" ? data.income += parseInt(item.amount) : data.expense += parseInt(item.amount)
         )
 
-        setDetails({ income: income, expense: expense })
+        return data;
     }, [list]);
 
     const chartData = useMemo(() => {
