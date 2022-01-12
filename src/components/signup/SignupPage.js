@@ -54,7 +54,7 @@ export const SignupForm = () => {
             </div>
             <div className="form-group">
                 <label htmlFor="password">Password</label>
-                <input type="text" name="password" placeholder="password"
+                <input type="password" name="password" placeholder="password"
                     value={password} onChange={(e) => setPassword(e.target.value)}
                 />
             </div>

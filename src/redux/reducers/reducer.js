@@ -4,7 +4,7 @@ import { ADD_TRANS, ADD_PLAN, DELETE_PLAN, DELETE_TRANS, EDIT_PLAN, EDIT_TRANS, 
 const setIDReducer = (state = {}, action) => {
     switch (action.type) {
         case SET_ID:
-            return { id: action.pyload };
+            return { id: action.payload };
         default:
             return state;
     }
