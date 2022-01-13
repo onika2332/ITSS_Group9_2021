@@ -14,7 +14,7 @@ function MonthChart({ list }) {
         let data = initData();
         let date = new Date();
         let thisMonthList = list.filter(item => {
-            let itemMonth = new Date(item.updatedAt);
+            let itemMonth = new Date(item.updatedAt.seconds);
             return itemMonth.getMonth() === date.getMonth()
         });
         thisMonthList.map(item =>
