@@ -13,14 +13,20 @@ function MonthChart({ list }) {
     const details = useMemo(() => {
         let data = initData();
         let date = new Date();
+        console.log("now: " + date);
         let thisMonthList = list.filter(item => {
-            let itemMonth = new Date(item.updatedAt);
+            let itemMonth = new Date(item.updatedAt.seconds);
+            console.log("item at " + itemMonth);
             return itemMonth.getMonth() === date.getMonth()
         });
-        thisMonthList.map(item =>
-            item.type === "income" ? data.income += parseInt(item.amount) : data.expense += parseInt(item.amount)
-        )
 
+        console.log("this month" + thisMonthList);
+        thisMonthList.map(item =>
+            item.type === "income"
+                ? data.income += parseInt(item.amount)
+                : data.expense += parseInt(item.amount)
+        )
+        console.log(data);
         return data;
     }, [list]);
 

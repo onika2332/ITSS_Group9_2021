@@ -4,15 +4,17 @@ import { db } from '../../firestore';
 import { doc, getDoc, updateDoc } from 'firebase/firestore/lite';
 import './ChangePassword.css'
 import md5 from 'md5';
+import { useNavigate } from 'react-router';
 
 function ChangePassword() {
+    const navigate = useNavigate();
     const { id } = useSelector(state => state.id);
     const [oldPassword, setOldPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [message, setMessage] = useState("Change your password");
 
-    const updatePassword = () => {
+    const updatePassword = async () => {
         if (oldPassword === "" || newPassword === "" || confirmPassword === "") {
             setMessage("Empty password");
             return;
