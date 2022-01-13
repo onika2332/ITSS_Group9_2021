@@ -53,7 +53,7 @@ const AddForm = (props) => {
                 type: type,
                 updatedAt: new Date()
             }));
-            const docRef = doc(db, "money_db", `${props.id}`);
+            const docRef = doc(db, "money_db", `${props.id.id}`);
             console.log(props.id);
             await updateDoc(docRef, {
                 transactions: arrayUnion({

@@ -9,7 +9,7 @@ const ChartContainer = () => {
     const transactionList = useSelector(state => state.transactions);
     const thisMonthList = useMemo(() => {
         let date = new Date();
-        return transactionList.filter(item => item.updatedAt.getMonth() === date.getMonth());
+        return transactionList.filter(item => (new Date(item.updatedAt.seconds)).getMonth() === date.getMonth());
     }, [transactionList])
     return (
         <div className='chart-container'>
