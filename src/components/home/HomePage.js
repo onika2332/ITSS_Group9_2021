@@ -1,18 +1,18 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import AddTransaction from './activity/AddTransaction'
 import ChartContainer from './chart/transaction/ChartContainer'
 import DisplayList from './DisplayList'
 import Header from './header/Header'
-
+import './homepage.css'
 
 function HomePage() {
+    const transactions = useSelector(state => state.transactions);
     return (
         <div className='home-container'>
             <Header />
-            {/* <ChartContainer />
-                <DisplayList data={list} />
-                <AddTransaction /> */}
-            <DisplayList />
+            <ChartContainer />
+            <DisplayList transactions={transactions} />
             <AddTransaction />
         </div>
 

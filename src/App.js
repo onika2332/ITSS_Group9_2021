@@ -7,7 +7,6 @@ import AddPage from './components/home/activity/add/AddPage';
 import HomePage from './components/home/HomePage';
 import { Provider } from 'react-redux';
 import { store } from './redux/store/transactionStore';
-import EditItem from './components/home/transaction/EditItem';
 
 function App() {
   return (
@@ -18,9 +17,8 @@ function App() {
             <Route path='*' element={<ErrorPage />} />
             <Route path='/signup' element={<SignupPage />} />
             <Route path='/' element={<Login />} />
-            <Route path='/home/' element={<HomePage />} />
+            <Route path='/home' element={<HomePage />} />
             <Route path='/transaction/add' element={<AddPage />} />
-            <Route path='/transaction/edit' element={<EditItem />} />
             {/*<Route path='/account' element={<AccountPage />} />
             <Route path='plan' element={<PlanPage />} />
               <Route path='feedback' element={<FeedbackPage />} /> */}
