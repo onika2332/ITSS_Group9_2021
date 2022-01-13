@@ -23,7 +23,8 @@ export const LoginForm = ({ fn }) => {
             const docSnap = await getDoc(docRef);
             if (docSnap.exists()) {
                 // redirect to Home + setup id, transactions, plans for redux store
-                fn.d_setID(docSnap.data().id);
+                console.log(docSnap.data());
+                fn.d_setID(id);
                 fn.d_setTransactions(docSnap.data().transactions);
                 fn.d_setPlans(docSnap.data().plans);
                 console.log("Login successfully");
@@ -55,7 +56,7 @@ export const LoginForm = ({ fn }) => {
                     Login
                 </button>
                 <div className='login-path'>
-                    Haven't an account? <Link to="/">Signup</Link>
+                    Haven't an account? <Link to="/signup">Signup</Link>
                 </div>
             </div>
         </div>

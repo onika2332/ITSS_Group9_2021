@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import TransactionList from './transaction/TransactionList'
 import Search from './activity/Search';
+import './DisplayList.css'
 function DisplayList(props) {
     //const transactionList = useSelector(state => state.transactions);
     const [list, setList] = useState(props.transactions);

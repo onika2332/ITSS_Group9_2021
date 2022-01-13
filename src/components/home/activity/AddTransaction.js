@@ -1,8 +1,7 @@
 import React from 'react'
 import './AddTransaction.css'
-import { useNavigate, useParams } from 'react-router'
+import { useNavigate } from 'react-router'
 const AddTransaction = () => {
-    const { id } = useParams();
     const navigate = useNavigate();
     return (
         <>

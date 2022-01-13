@@ -33,7 +33,7 @@ export const SignupForm = () => {
                 });
                 setText("Create successfully");
                 setTimeout(() => { }, 1000);
-                navigate('/login');
+                navigate('/');
             }
         }
     }
@@ -63,7 +63,7 @@ export const SignupForm = () => {
                     Register
                 </button>
                 <div className='login-path'>
-                    Have an account? <Link to="/login">Login</Link>
+                    Have an account? <Link to="/">Login</Link>
                 </div>
             </div>
         </div>
