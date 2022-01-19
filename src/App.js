@@ -7,6 +7,11 @@ import AddPage from './components/home/activity/add/AddPage';
 import HomePage from './components/home/HomePage';
 import { Provider } from 'react-redux';
 import { store } from './redux/store/transactionStore';
+import Account from './components/account/Account'
+import PasswordPage from './components/account/PasswordPage'
+import HomePlans from './components/plans/HomePlans'
+import AddPlanPage from './components/plans/add/AddPlanPage'
+import ChangePassword from './components/account/ChangePassword'
 
 function App() {
   return (
@@ -19,9 +24,13 @@ function App() {
             <Route path='/' element={<Login />} />
             <Route path='/home' element={<HomePage />} />
             <Route path='/transaction/add' element={<AddPage />} />
-            {/*<Route path='/account' element={<AccountPage />} />
-            <Route path='plan' element={<PlanPage />} />
-              <Route path='feedback' element={<FeedbackPage />} /> */}
+            <Route path='/account' element={<Account />} />
+            <Route path='/change-password' element={<PasswordPage>
+              <p>Change your password</p>
+              <ChangePassword />
+            </PasswordPage>} />
+            <Route path='/plan' element={<HomePlans />} />
+            <Route path='/plan/add' element={<AddPlanPage />} />
           </Routes>
         </BrowserRouter>
       </div>

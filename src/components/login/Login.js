@@ -31,7 +31,7 @@ export const LoginForm = () => {
                 console.log("Login successfully");
                 navigate(`/home`);
             } else {
-                setText("User is already available.Please enter another username!!");
+                setText("User is not available.Please enter another username!!");
                 return;
             }
         }

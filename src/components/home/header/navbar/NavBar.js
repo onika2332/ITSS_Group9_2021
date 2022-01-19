@@ -9,7 +9,7 @@ const NavBar = () => {
     const navigate = useNavigate();
     return (
         <div className='navbar'>
-            <div className='navbar-element'>
+            <div className='navbar-element' onClick={() => navigate('/plan')}>
                 PLAN
                 <ListIcon fontSize='large' color='primary' />
             </div>
@@ -17,7 +17,7 @@ const NavBar = () => {
                 FEEDBACK
                 <FeedbackIcon fontSize='large' color='primary' />
             </div>
-            <div className='navbar-element' onClick={navigate('/account')}>
+            <div className='navbar-element' onClick={() => navigate('/account')}>
                 ACCOUNT
                 <AccountCircleIcon fontSize='large' color='primary' />
             </div>

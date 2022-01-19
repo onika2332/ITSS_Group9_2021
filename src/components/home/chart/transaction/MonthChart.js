@@ -14,13 +14,14 @@ function MonthChart({ list }) {
         let data = initData();
         let date = new Date();
         let thisMonthList = list.filter(item => {
-            let itemMonth = new Date(item.updatedAt.seconds);
-            return itemMonth.getMonth() === date.getMonth()
+            let itemMonth = (new Date(1000 * item.updatedAt.seconds)).getMonth();
+            return itemMonth === date.getMonth()
         });
         thisMonthList.map(item =>
-            item.type === "income" ? data.income += parseInt(item.amount) : data.expense += parseInt(item.amount)
+            item.type === "income"
+                ? data.income += parseInt(item.amount)
+                : data.expense += parseInt(item.amount)
         )
-
         return data;
     }, [list]);
 
@@ -46,11 +47,11 @@ function MonthChart({ list }) {
     }, [details]);
 
     return (
-        <div style={{ height: '250px', width: '250px', position: "relative" }}>
+        <div style={{ height: '240px', width: '240px', position: "relative" }}>
             <Pie
                 id="month-chart"
                 data={chartData}
-                style={{ height: '220px', width: '220px' }}
+                style={{ height: '200px', width: '200px' }}
             />
         </div>
 

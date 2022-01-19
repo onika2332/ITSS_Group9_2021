@@ -22,17 +22,17 @@ function Account() {
         }
 
         getData();
-    }, []);
+    }, [id]);
     return (
         <div className='account-container'>
             <p>Account profile</p>
             <div id="item">
-                <label for="username">Username</label>
-                <p id="username"></p>
+                <label for="username">Username:</label>
+                <p id="username">{username}</p>
             </div>
             <div id="item">
-                <label for="email">Email</label>
-                <p id="email"></p>
+                <label for="email">Email:</label>
+                <p id="email">{email}</p>
             </div>
             <div id="account-footer">
                 <button id="back-btn" onClick={() => navigate('/home')}>{`< Back`}</button>

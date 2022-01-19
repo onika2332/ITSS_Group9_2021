@@ -1,61 +1,24 @@
-import { arrayUnion, doc, Timestamp, updateDoc } from 'firebase/firestore/lite';
+import { doc, Timestamp, updateDoc, arrayUnion } from 'firebase/firestore/lite';
 import md5 from 'md5';
 import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import { db } from '../../../../firestore';
-import { addTransaction } from '../../../../redux/actions/actions';
-import "./AddForm.css"
+import ReactDatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css'
+import { useDispatch, useSelector } from 'react-redux'
+import { db } from '../../../firestore';
+import { addPlan } from '../../../redux/actions/actions';
+import './AddPlanForm.css'
 
-export const options = [
-    {
-        value: "Other...",
-        label: "Other..."
-    },
-    {
-        value: "Bill",
-        label: "Bill"
-    },
-    {
-        value: "Educations",
-        label: "Educations"
-    },
-    {
-        value: "Food",
-        label: "Food"
-    },
-    {
-        value: "Entertainment",
-        label: "Entertainment"
-    },
-    {
-        value: "Pet",
-        label: "Pet"
-    },
-    {
-        value: "Salary",
-        label: "Salary"
-    },
-    {
-        value: "Other incomes",
-        label: "Other incomes"
-    },
-    {
-        value: "Medical",
-        label: "Medical"
-    },
-    {
-        value: "Transport",
-        label: "Transport"
-    }
-];
+function AddPlanForm() {
 
-const AddForm = () => {
-    const [type, setType] = useState('income');
+    const [type, setType] = useState("income");
     const [amount, setAmount] = useState(0);
-    const [desc, setDesc] = useState("Others...");
+    const [desc, setDesc] = useState("...");
+    const [expired, setExpired] = useState(new Date());
+    const [text, setText] = useState("Add your new plans");
+
     const dispatch = useDispatch();
     const { id } = useSelector(state => state.id);
-    const [text, setText] = useState("Add your transaction here");
+
     const changeType = () => {
         if (type === 'income') {
             setType('expense');
@@ -69,33 +32,33 @@ const AddForm = () => {
     const handleAmount = (e) => {
         setAmount(e.target.value);
     }
-
     const handleClick = async () => {
         if (amount === 0 || "" === desc) {
             setText("Amount or description is empty");
             return;
         } else {
-            dispatch(addTransaction({
+            dispatch(addPlan({
                 id: md5(amount.toString() + desc),
                 amount: amount,
                 description: desc,
                 type: type,
                 updatedAt: Timestamp.now(),
-            }));
+                expiredAt: Timestamp.fromDate(expired),
+            }))
             const docRef = doc(db, "money_db", `${id}`);
             await updateDoc(docRef, {
-                transactions: arrayUnion({
+                plans: arrayUnion({
                     id: md5(amount.toString() + desc),
                     amount: amount,
                     description: desc,
                     type: type,
-                    updatedAt: Timestamp.now()
+                    updatedAt: Timestamp.now(),
+                    expiredAt: Timestamp.fromDate(expired)
                 })
             });
-            setText("Add new transaction successfully. Do you want more?");
+            setText("Add new plan successfully. Do you want more?");
         }
     }
-
     return (
         <div className='add-form'>
             <p>{text}</p>
@@ -105,14 +68,21 @@ const AddForm = () => {
                 value={amount}
                 onChange={(e) => handleAmount(e)}
             />
-            <div className='desc-container'>
-                <p>Choose description</p>
-                <select defaultValue={desc} onChange={handleDesc}>
-                    {
-                        options.map(option => (<option key={option.value} value={option.value}>{option.label}</option>))
-                    }
-                </select>
-            </div>
+            <input
+                type='text'
+                placeholder='Enter description...'
+                value={desc}
+                onChange={(e) => handleDesc(e)}
+            />
+            <ReactDatePicker
+                selected={expired}
+                minDate={new Date()}
+                onChange={(date) => setExpired(date)}
+                isClearable
+                placeholderText="Plan's expired date"
+            >
+                <div style={{ color: "red" }}>Please choose the expired of plan</div>
+            </ReactDatePicker>
             <button
                 className={type}
                 onClick={changeType}
@@ -133,4 +103,4 @@ const AddForm = () => {
     )
 }
 
-export default AddForm
+export default AddPlanForm
