@@ -29,7 +29,8 @@ export const SignupForm = () => {
                     password: md5(password),
                     email: email,
                     transactions: [],
-                    plans: []
+                    plans: [],
+                    feedbacks: []
                 });
                 setText("Create successfully");
                 setTimeout(() => { }, 1000);

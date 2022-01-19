@@ -1,0 +1,51 @@
+.star-list {
+  height: 80px;
+  width: 350px;
+  display: flex;
+  align-items: center;
+  margin: 3px 3px;
+}
+
+#star-btn {
+  height: 80%;
+  width: 20%;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.on {
+  color: yellow;
+}
+.off {
+  color: #ccc;
+}
+
+#back-btn {
+  margin: 4px 4px;
+  width: 40%;
+  height: 80%;
+  font-size: 15px;
+}
+
+#send-btn {
+  margin: 10px 10px;
+  width: 40%;
+  height: 80%;
+  font-size: 15px;
+}
+
+.feedback-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+}
+
+p {
+  height: 25%;
+  width: 100%;
+  font-size: 20px;
+  margin: 4px 4px;
+}

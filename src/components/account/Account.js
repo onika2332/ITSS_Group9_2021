@@ -1,10 +1,12 @@
 import { doc, getDoc } from 'firebase/firestore/lite';
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router';
 import { db } from '../../firestore';
+import { setID, setPlans, setTransactions } from '../../redux/actions/actions';
 import './account.css'
 function Account() {
+    const dispatch = useDispatch();
     const { id } = useSelector(state => state.id);
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
@@ -34,9 +36,32 @@ function Account() {
                 <label for="email">Email:</label>
                 <p id="email">{email}</p>
             </div>
+
             <div id="account-footer">
-                <button id="back-btn" onClick={() => navigate('/home')}>{`< Back`}</button>
-                <button id="change-password" onClick={() => navigate('/change-password')}>Change password</button>
+                <button
+                    id="back-btn"
+                    onClick={() => navigate('/home')}
+                >
+                    {`< Back`}
+                </button>
+                <button
+                    id="change-password-btn"
+                    onClick={() => navigate('/change-password')}
+                >
+                    Change password
+                </button>
+                <button
+                    id="logout-btn"
+                    onClick={() => {
+                        dispatch(setID(""));
+                        dispatch(setTransactions([]));
+                        dispatch(setPlans([]));
+                        localStorage.removeItem('state');
+                        navigate("/");
+                    }}
+                >
+                    Logout
+                </button>
             </div>
         </div>
     )

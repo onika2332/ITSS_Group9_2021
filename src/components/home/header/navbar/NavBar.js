@@ -13,7 +13,7 @@ const NavBar = () => {
                 PLAN
                 <ListIcon fontSize='large' color='primary' />
             </div>
-            <div className='navbar-element'>
+            <div className='navbar-element' onClick={() => navigate('/feedback')}>
                 FEEDBACK
                 <FeedbackIcon fontSize='large' color='primary' />
             </div>
