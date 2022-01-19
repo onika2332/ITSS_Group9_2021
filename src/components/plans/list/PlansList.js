@@ -1,13 +1,12 @@
 import React from 'react'
-import Item from './Item'
-import './List.css'
-
-const TransactionList = ({ list }) => {
+import './PlansList.css'
+import PlanItem from './PlanItem'
+function PlansList({ list }) {
     return (
-        <div className='list-transaction'>
+        <div className='list-plan'>
             {
                 list && list.map((item) =>
-                    <Item
+                    <PlanItem
                         key={item.id}
                         id={item.id}
                         description={item.description}
@@ -20,4 +19,4 @@ const TransactionList = ({ list }) => {
     )
 }
 
-export default TransactionList
+export default PlansList

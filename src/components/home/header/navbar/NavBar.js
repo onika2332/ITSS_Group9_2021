@@ -9,7 +9,7 @@ const NavBar = () => {
     const navigate = useNavigate();
     return (
         <div className='navbar'>
-            <div className='navbar-element'>
+            <div className='navbar-element' onClick={() => navigate('/plan')}>
                 PLAN
                 <ListIcon fontSize='large' color='primary' />
             </div>

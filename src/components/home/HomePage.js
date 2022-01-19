@@ -7,12 +7,11 @@ import Header from './header/Header'
 import './homepage.css'
 
 function HomePage() {
-    const transactions = useSelector(state => state.transactions);
     return (
         <div className='home-container'>
             <Header />
             <ChartContainer />
-            <DisplayList transactions={transactions} />
+            <DisplayList transactions={useSelector(state => state.transactions)} />
             <AddTransaction />
         </div>
 

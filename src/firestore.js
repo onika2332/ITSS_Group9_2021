@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getFirestore } from 'firebase/firestore/lite';
+import { doc, getDoc, getFirestore } from 'firebase/firestore/lite';
 
 // Đây là config của 1 DB giả lập, khi thực hiện trên project thực chỉ cần thay dổi config.
 const firebaseConfig = {
@@ -16,3 +16,17 @@ const firebaseConfig = {
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
+
+export const getDocSnap = async (dbName, id) => {
+    try {
+        const docRef = doc(db, dbName, id);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exist()) {
+            return docSnap;
+        } else {
+            return undefined;
+        }
+    } catch (err) {
+        return undefined;
+    }
+} 

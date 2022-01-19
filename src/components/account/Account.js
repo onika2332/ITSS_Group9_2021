@@ -27,11 +27,11 @@ function Account() {
         <div className='account-container'>
             <p>Account profile</p>
             <div id="item">
-                <label for="username">Username</label>
+                <label for="username">Username:</label>
                 <p id="username">{username}</p>
             </div>
             <div id="item">
-                <label for="email">Email</label>
+                <label for="email">Email:</label>
                 <p id="email">{email}</p>
             </div>
             <div id="account-footer">

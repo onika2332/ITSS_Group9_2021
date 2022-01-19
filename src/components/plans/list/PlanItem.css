@@ -1,0 +1,68 @@
+.plan-item {
+  width: 85%;
+  margin-top: 4px;
+  background-color: white;
+  border: 2px solid;
+  border-radius: 4px;
+  height: 10%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2px 2px;
+}
+
+.plan-description {
+  width: 50%;
+  margin-left: 10px;
+  margin-right: 5px;
+}
+.plan-amount {
+  width: 30%;
+  padding-left: 10px;
+  margin: 0 10px;
+}
+
+.delete-btn-container {
+  height: 90%;
+  width: 15%;
+  margin-left: 15px;
+}
+
+.delete-btn {
+  width: 90%;
+  height: 95%;
+  text-align: center;
+}
+
+#red {
+  background-color: red;
+  width: 15px;
+  height: 100%;
+  margin-right: 5px;
+  cursor: none;
+}
+
+#green {
+  background-color: green;
+  width: 15px;
+  height: 100%;
+  margin-right: 5px;
+  cursor: none;
+}
+
+button {
+  margin-left: 10px;
+  color: black;
+  border-radius: 6px;
+  border: none;
+  width: fit-content;
+  padding-left: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: white;
+  color: red;
+  border: 1px solid var(--blue);
+}

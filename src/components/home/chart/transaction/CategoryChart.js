@@ -41,11 +41,11 @@ function CategoryChart({ list }) {
         }
     }, [countedData])
     return (
-        <div style={{ height: '250px', width: '250px', position: "relative" }}>
+        <div style={{ height: '290px', width: '330px', position: "relative" }}>
             <Doughnut
                 id="category-chart"
                 data={chartData}
-                style={{ height: '220px', width: '220px' }}
+                style={{ height: '270px', width: '270px' }}
             />
         </div>
     )
