@@ -12,6 +12,7 @@ import PasswordPage from './components/account/PasswordPage'
 import HomePlans from './components/plans/HomePlans'
 import AddPlanPage from './components/plans/add/AddPlanPage'
 import ChangePassword from './components/account/ChangePassword'
+import FeedbackPage from './components/feedback/FeedbackPage';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
             </PasswordPage>} />
             <Route path='/plan' element={<HomePlans />} />
             <Route path='/plan/add' element={<AddPlanPage />} />
+            <Route path='/feedback' element={<FeedbackPage />} />
           </Routes>
         </BrowserRouter>
       </div>
