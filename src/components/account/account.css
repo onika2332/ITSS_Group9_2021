@@ -5,15 +5,15 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  align-content: center;
+}
+b {
+  font-size: 20px;
 }
 
-#item {
+.info-item {
   margin: 10px 10px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
+  width: 60%;
   height: 50px;
 }
 

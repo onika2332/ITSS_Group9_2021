@@ -12,7 +12,8 @@ export const SignupForm = () => {
     const [email, setEmail] = useState("");
     const [text, setText] = useState("Signup to get started");
     const navigate = useNavigate();
-    const handleSignup = async () => {
+    const handleSignup = async (event) => {
+        event.preventDefault();
         if (username === "" || password === "" || email === "") {
             setText("Username, email or password is now empty. Please enter!");
             return;
@@ -25,9 +26,9 @@ export const SignupForm = () => {
                 return;
             } else {
                 await setDoc(doc(db, "money_db", `${md5(username + password)}`), {
-                    username: username,
-                    password: md5(password),
-                    email: email,
+                    username: username.trim(),
+                    password: md5(password.trim()),
+                    email: email.trim(),
                     transactions: [],
                     plans: [],
                     feedbacks: []
@@ -39,6 +40,7 @@ export const SignupForm = () => {
         }
     }
     return (
+        <form onSubmit={handleSignup} >
         <div className="form">
             <div className='text-note'>{text}</div>
             <div className="form-group">
@@ -49,7 +51,7 @@ export const SignupForm = () => {
             </div>
             <div className="form-group">
                 <label htmlFor="email">Email</label>
-                <input type="text" name="email" placeholder="email"
+                <input type="email" name="email" placeholder="email"
                     value={email} onChange={(e) => setEmail(e.target.value)}
                 />
             </div>
@@ -60,7 +62,7 @@ export const SignupForm = () => {
                 />
             </div>
             <div className="footer">
-                <button type="button" className="submit-btn" onClick={handleSignup} >
+                <button type="submit" className="submit-btn">
                     Register
                 </button>
                 <div className='login-path'>
@@ -68,6 +70,7 @@ export const SignupForm = () => {
                 </div>
             </div>
         </div>
+        </form>
     )
 }
 

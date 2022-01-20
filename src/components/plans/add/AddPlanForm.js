@@ -6,7 +6,7 @@ import 'react-datepicker/dist/react-datepicker.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { db } from '../../../firestore';
 import { addPlan } from '../../../redux/actions/actions';
-import './AddPlanForm.css'
+import '../../home/activity/add/AddForm.js'
 
 function AddPlanForm() {
 
@@ -60,10 +60,15 @@ function AddPlanForm() {
         }
     }
     return (
+        <form onSubmit={() => {
+            handleClick();
+            setDesc("");
+            setAmount("");
+        }}>
         <div className='add-form'>
             <p>{text}</p>
             <input
-                type='text'
+                type='number' min="1"
                 placeholder='Enter amount...'
                 value={amount}
                 onChange={(e) => handleAmount(e)}
@@ -91,15 +96,12 @@ function AddPlanForm() {
             </button>
             <button
                 className='confirm'
-                onClick={() => {
-                    handleClick();
-                    setDesc("");
-                    setAmount("");
-                }}
+                type='submit'
             >
                 Confirm
             </button>
         </div>
+        </form>
     )
 }
 

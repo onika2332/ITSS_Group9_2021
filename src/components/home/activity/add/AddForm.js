@@ -97,16 +97,21 @@ const AddForm = () => {
     }
 
     return (
+        <form onSubmit={() => {
+            handleClick();
+            setDesc("");
+            setAmount("");
+        }}>
         <div className='add-form'>
             <p>{text}</p>
             <input
-                type='text'
+                type='number' min="1"
                 placeholder='Enter amount...'
                 value={amount}
                 onChange={(e) => handleAmount(e)}
             />
             <div className='desc-container'>
-                <p>Choose description</p>
+                <p>Description</p>
                 <select defaultValue={desc} onChange={handleDesc}>
                     {
                         options.map(option => (<option key={option.value} value={option.value}>{option.label}</option>))
@@ -121,15 +126,12 @@ const AddForm = () => {
             </button>
             <button
                 className='confirm'
-                onClick={() => {
-                    handleClick();
-                    setDesc("");
-                    setAmount("");
-                }}
+                type="submit"
             >
                 Confirm
             </button>
         </div>
+        </form>
     )
 }
 
