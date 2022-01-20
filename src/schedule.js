@@ -1,7 +1,7 @@
 import cron from 'node-cron';
 import md5 from 'md5';
 import { db } from './firestore.js';
-import { doc, getDocs, setDoc, collection, getDoc, Timestamp, updateDoc, arrayUnion } from 'firebase/firestore/lite';
+import { doc, getDocs, collection, Timestamp, updateDoc, arrayUnion } from 'firebase/firestore/lite';
 
 cron.schedule('0 0 1 * *', async ()=>{
     var docRef = collection(db, 'money_db');
