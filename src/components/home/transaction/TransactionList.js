@@ -8,6 +8,7 @@ const TransactionList = ({ list }) => {
             {
                 list && list.map((item) =>
                     <Item
+                        object={item}
                         key={item.id}
                         id={item.id}
                         description={item.description}
