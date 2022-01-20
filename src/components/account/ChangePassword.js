@@ -13,7 +13,8 @@ function ChangePassword() {
     const [newPassword, setNewPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [msg, setMsg] = useState("Complete form to change password");
-    const updatePassword = async () => {
+    const updatePassword = async (event) => {
+        event.preventDefault();
         if (oldPassword === "" || newPassword === "" || confirmPassword === "") {
             setMsg("Empty password");
             return;
@@ -25,17 +26,17 @@ function ChangePassword() {
             const docRef = doc(db, "money_db", `${id}`);
             const docSnap = await getDoc(docRef);
             if (docSnap.exists()) {
-                const p = md5(docSnap.data().username + oldPassword);
+                const p = md5(oldPassword);
                 if (p !== docSnap.data().password) {
                     setMsg("Current password is wrong.Enter again.");
                 } else {
                     await updateDoc(docRef, {
-                        password: md5(docSnap.data().username + newPassword)
+                        password: md5(newPassword)
                     });
                     setMsg("Update password successfuly");
-                    setTimeout(() => {
-                        navigate('/home');
-                    }, 1000);
+                    // setTimeout(() => {
+                    //     navigate('/home');
+                    // }, 1000);
                 }
             }
         }
@@ -73,7 +74,7 @@ function ChangePassword() {
                 </div>
                 <div id="form-footer">
                     <button id="back-btn" onClick={() => navigate('/home')}>{`< Back`}</button>
-                    <button id="change-password" onClick={() => updatePassword()}>Change password</button>
+                    <button id="change-password" type='submit' onClick={updatePassword}>Change password</button>
                 </div>
             </form>
         </>
