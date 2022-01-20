@@ -70,7 +70,8 @@ const AddForm = () => {
         setAmount(e.target.value);
     }
 
-    const handleClick = async () => {
+    const handleClick = async (event) => {
+        event.preventDefault();
         if (amount === 0 || "" === desc) {
             setText("Amount or description is empty");
             return;

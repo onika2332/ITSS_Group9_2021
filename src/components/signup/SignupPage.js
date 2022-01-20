@@ -19,13 +19,13 @@ export const SignupForm = () => {
             return;
         } else {
             // query firestore
-            const docRef = doc(db, "money_db", `${md5(username + password)}`);
+            const docRef = doc(db, "money_db", `${md5(username)}`);
             const docSnap = await getDoc(docRef);
             if (docSnap.exists()) {
-                setText("User is already available.Please enter another username!!");
+                setText("User is already available. Please enter another username!!");
                 return;
             } else {
-                await setDoc(doc(db, "money_db", `${md5(username + password)}`), {
+                await setDoc(doc(db, "money_db", `${md5(username)}`), {
                     username: username.trim(),
                     password: md5(password.trim()),
                     email: email.trim(),

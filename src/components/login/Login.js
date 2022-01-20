@@ -20,10 +20,10 @@ export const LoginForm = () => {
         if (username === "" || password === "") {
             setText("Username or password is empty");
         } else {
-            const id = md5(username + password);
+            const id = md5(username);
             const docRef = doc(db, "money_db", `${id}`);
             const docSnap = await getDoc(docRef);
-            if (docSnap.exists()) {
+            if (docSnap.exists() && docSnap.data().password === md5(password)) {
                 // redirect to Home + setup id, transactions, plans for redux store
                 dispatch(setID(id));
                 dispatch(setTransactions(docSnap.data().transactions));
